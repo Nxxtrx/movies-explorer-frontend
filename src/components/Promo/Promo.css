@@ -1,3 +1,33 @@
 .promo {
-    background-color: blue;
+  background-color: #465DFF;
 }
+
+.promo__container{
+  display: block;
+  margin: 0 auto;
+  max-width: calc(1280px - 140px);
+}
+
+.promo__title{
+  margin: 0;
+  color: #fff;
+  padding-top: 50px;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: calc(52 / 40);
+  max-width: 626px;
+}
+
+.clearfix{
+  clear: both;
+}
+
+.promo__img{
+  margin-top: 102px;
+  width: 722px;
+  height: 244px;
+  float: right;
+  margin-right: 70px;
+  margin-bottom: 60px;
+}
+

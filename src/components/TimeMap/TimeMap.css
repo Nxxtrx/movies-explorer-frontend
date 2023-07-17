@@ -1,0 +1,27 @@
+.time-map{
+  display: flex;
+  text-align: center;
+  margin-top: 110px;
+}
+
+.time-map__term{
+  background-color: #2BE080;
+  padding: 9px calc(228px - 2 * 84px);
+  margin: 0;
+}
+
+.time-map__frontend{
+  flex-grow: 1;
+}
+
+.time-map__term_type_grey{
+  background-color: #F2F2F2;
+  padding-left: 0;
+  padding-right: 0;
+}
+.time-map__specialization{
+  font-size: 14px;
+  color: #A0A0A0;
+  font-weight: 500;
+  margin-top: 14px;
+}

@@ -1,0 +1,25 @@
+.nav-menu__links{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-menu__element{
+  list-style-type: none;
+}
+
+.nav-menu__link{
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.nav-menu__link_type_colored{
+  display: block;
+  padding: 8px 20px;
+  color: #000;
+  background-color: #2BE080;
+  border-radius: 3px;
+}
+

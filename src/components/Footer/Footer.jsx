@@ -1,3 +1,5 @@
+import './Footer.css'
+
 export default function Footer() {
   return(
     <div className="footer">
@@ -5,8 +7,8 @@ export default function Footer() {
       <div className="footer__container">
         <p className="footer__copyright">&#169; 2020</p>
         <div className="footer__link">
-          <a href="">Яндекс.Практикум</a>
-          <a href="">Github</a>
+          <a className='footer__link-element' href="">Яндекс.Практикум</a>
+          <a className='footer__link-element' href="">Github</a>
         </div>
       </div>
     </div>

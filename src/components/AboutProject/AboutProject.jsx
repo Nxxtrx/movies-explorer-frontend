@@ -1,11 +1,12 @@
 import MainTitle from "../MainTitle/MainTitle"
 import TimeMap from "../TimeMap/TimeMap"
+import './AboutProject.css'
 
 export default function AboutProject() {
   return(
     <div className="project">
 
-      <MainTitle title = {'о проектe'} />
+      <MainTitle title = {'О проектe'} />
 
       <div className="project__container">
         <div className="project__component">

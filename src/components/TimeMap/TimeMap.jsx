@@ -1,3 +1,5 @@
+import './TimeMap.css'
+
 export default function TimeMap() {
   return(
     <div className="time-map">

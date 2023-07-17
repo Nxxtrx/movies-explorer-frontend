@@ -1,9 +1,12 @@
 import React from "react"
+import '../../vendor/normalize.css'
+import '../../vendor/fonts/fonts.css'
+import './App.css'
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import NavTab from "../NavTab/NavTab";
 import AboutProject from "../AboutProject/AboutProject";
-import Tech from "../Techs/Techs";
+import Techs from "../Techs/Techs";
 import AboutMe from "../AboutMe/AboutMe";
 import Footer from "../Footer/Footer";
 
@@ -13,7 +16,7 @@ function App() {
             <Header />
             <Main />
             <AboutProject />
-            <Tech />
+            <Techs />
             <AboutMe />
             <Footer />
         </div>

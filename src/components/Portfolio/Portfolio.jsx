@@ -1,4 +1,5 @@
 import portfolioLink from '../../images/portfolio-link.svg'
+import './Portfolio.css'
 
 export default function Portfolio() {
   return (

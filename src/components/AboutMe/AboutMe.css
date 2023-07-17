@@ -1,0 +1,46 @@
+.about{
+  max-width: calc(1280px - 140px);
+  margin: 0 auto;
+  padding-top: 110px;
+}
+
+.about__container{
+  margin-top: 66px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.about__name{
+  font-size: 50px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.about__career{
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 18px;
+}
+
+.about__biography{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: calc(18 / 14);
+  max-width: 600px;
+  margin-bottom: 99px;
+}
+
+.about__link{
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.about__img{
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+  object-fit:cover;
+}

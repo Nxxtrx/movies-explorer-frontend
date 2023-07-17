@@ -1,6 +1,7 @@
 import MainTitle from '../MainTitle/MainTitle';
 import Portfolio from '../Portfolio/Portfolio';
-import MeImg from '../../images/me.png'
+import MeImg from '../../images/mk.gif'
+import './AboutMe.css'
 
 export default function AboutMe() {
   return (
@@ -12,14 +13,14 @@ export default function AboutMe() {
           <p className="about__career">Фронтенд-разработчик, 25 лет</p>
           <p className="about__biography">
             Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня
-            есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом.
+            есть жена и&nbsp;дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом.
             Недавно начал кодить. С 2015 года работал в компании «СКБ Контур».
-            После того, как прошёл курс по веб-разработке, начал заниматься
+            После того, как прошёл курс по веб-&nbsp;разработке, начал заниматься
             фриланс-заказами и ушёл с постоянной работы.
           </p>
           <a href="#" className="about__link">Github</a>
         </div>
-        <img src={MeImg} alt="" />
+        <img className='about__img' src={MeImg} alt="" />
       </div>
       <Portfolio />
     </div>

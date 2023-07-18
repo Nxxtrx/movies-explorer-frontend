@@ -1,0 +1,29 @@
+.cards {
+  max-width: calc(1280px - 140px);
+  margin: 0 auto;
+}
+
+.cards__list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  row-gap: 60px;
+  column-gap: 30px;
+}
+
+.cards__more-container{
+
+}
+
+.cards__btn-more{
+  display: block;
+  width: 320px;
+  height: 35px;
+  background-color: #F9F9F9;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 78px auto 80px;
+  text-align: center;
+}

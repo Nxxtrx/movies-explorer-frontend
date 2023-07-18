@@ -1,4 +1,8 @@
 .header{
+  padding-top: 18px;
+}
+
+.header_type_colored {
   background-color: #465DFF;
 }
 
@@ -10,7 +14,11 @@
   max-width: calc(1280px - 140px);
 }
 
+
 .header__logo{
   width: 38px;
   height: 38px;
+  flex-grow: 0;
 }
+
+

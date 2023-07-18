@@ -1,18 +1,40 @@
+.nav-menu{
+  flex-grow: 1;
+}
+
 .nav-menu__links{
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
+.nav-menu__links_type_auth{
+  justify-content: space-between;
+  padding-left: 44px;
+}
+
 .nav-menu__element{
   list-style-type: none;
+}
+
+.nav-menu__element_type_auth:last-child{
+  flex-grow: 1;
+  text-align: right;
 }
 
 .nav-menu__link{
   color: #ffffff;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.nav-menu__link_type_select{
   font-weight: 500;
+}
+
+.nav-menu__link_type_auth{
+  color: #000;
 }
 
 .nav-menu__link_type_colored{
@@ -21,5 +43,14 @@
   color: #000;
   background-color: #2BE080;
   border-radius: 3px;
+}
+
+.nav-menu__link_type_auth-colored{
+  color: #000;
+  background-color: #F9F9F9;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 14px;
 }
 

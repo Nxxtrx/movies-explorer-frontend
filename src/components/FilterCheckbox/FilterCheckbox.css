@@ -1,0 +1,43 @@
+.filter{
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.filter__title{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: calc(18 / 14);
+}
+
+.filter__checkbox{
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 36px;
+  height: 20px;
+  background-color: #EBEBEB;
+  outline: none;
+  border-radius: 20px;
+  transition: .3s;
+}
+
+.filter__checkbox:checked{
+  background-color: #2BE080;
+}
+
+.filter__checkbox::before{
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 20px;
+  top: 10%;
+  left: 4%;
+  background-color: #fff;
+  transition: .1s;
+}
+
+.filter__checkbox:checked::before{
+  left: 19px;
+}

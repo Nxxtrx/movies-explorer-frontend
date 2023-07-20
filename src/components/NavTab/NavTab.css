@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   gap: 30px;
+  justify-content: right;
 }
 
 .nav-menu__links_type_auth{

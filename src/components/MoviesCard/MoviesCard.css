@@ -1,5 +1,6 @@
 .card__container{
   width: 360px;
+  position: relative;
 }
 
 .card__image{
@@ -9,6 +10,42 @@
   object-position: 50% 50%;
   border-radius: 6px;
 }
+
+.card__save-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  border-radius: 30px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: calc(10 / 9);
+  width: 72px;
+  height: 21px;
+  visibility: hidden;
+  transition: visibility .1s linear;
+}
+
+.card__container:hover .card__save-btn {
+  visibility: visible;
+}
+
+.card__save-btn_type_remove{
+  background-image: url('../../images/delete-icon.svg');
+  width: 21px;
+  height: 21px;
+}
+
+.card__remove-save{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: rgba(240, 248, 255, 0);
+  border: none;
+  width: 21px;
+  height: 21px;
+}
+
 
 .card__description{
   display: flex;

@@ -9,17 +9,36 @@ import Techs from "../Techs/Techs";
 import AboutMe from "../AboutMe/AboutMe";
 import Movies from '../Movies/Movies'
 import Footer from "../Footer/Footer";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import SavedMovies from "../SavedMovies/SavedMovies";
+import Profile from "../Profile/Profile";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
+import ErrorWindow from "../ErrorWindow/ErrorWindow";
 
 function App() {
+  const location = useLocation();
+
     return (
         <div className="page">
-            <Header />
+            {location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies' || location.pathname === 'profile'
+              ? <Header />
+              : ''
+            }
             <Routes>
               <Route path="/" element={<Main /> } />
               <Route path="/movies" element={<Movies />} />
+              <Route path="/saved-movies" element={<SavedMovies />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/signin" element={<Login />} />
+              <Route path="/signup" element={<Register />} />
+              <Route path="/*" element={<ErrorWindow />} />
             </Routes>
-            <Footer />
+            {location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies'
+              ? <Footer />
+              : ''
+            }
+
         </div>
     )
 }

@@ -30,7 +30,7 @@
 
 .profile__form-label:first-child{
   border-bottom: 1px solid #E8E8E8;
-  margin-top: 123px;
+  margin-top: calc(123px - 16px);
 }
 
 .profile__input{
@@ -51,9 +51,14 @@
   border: none;
   font-size: 13px;
   font-weight: 400;
-
   cursor: pointer;
-  margin: 220px auto 0;
+  margin: calc(220px - 18px) auto 0;
+  opacity: 1;
+  transition: opacity .2s linear;
+}
+
+.profile__btn-submit:hover{
+  opacity: .6;
 }
 
 .profile__signout-btn{
@@ -65,4 +70,72 @@
   font-weight: 400;
   cursor: pointer;
   text-align: center;
+  opacity: 1;
+  transition: opacity .2s linear;
+}
+
+.profile__signout-btn:hover{
+  opacity: .6;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .profile__title{
+    margin-top: 162px;
+  }
+
+  .profile__form-label:first-child{
+    margin-top: 80px;
+  }
+
+  .profile__btn-submit{
+    margin-top: 191px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .profile__title{
+    margin-top: 100px;
+  }
+
+  .profile__form-container{
+    max-width: 350px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+
+  .profile{
+    padding-top: 70px;
+  }
+
+  .profile__title{
+    margin-top: 0px;
+  }
+
+  .profile__form-container{
+    max-width: 260px;
+  }
+
+  .profile__form-label:first-child{
+    margin-top: 64px;
+  }
+
+  .profile__input{
+    width: 200px;
+  }
+
+  .profile__btn-submit{
+    margin-top: 361px;
+  }
+
+  .profile__btn-submit{
+    font-size: 12px;
+  }
+
+  .profile__signout-btn{
+    font-size: 12px;
+    font-weight: 500;
+  }
 }

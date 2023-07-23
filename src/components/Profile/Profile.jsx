@@ -4,7 +4,7 @@ import './Profile.css'
 export default function Profil() {
   return(
   <section className="profile">
-    <p className="profile__title">Привет, Виталий</p>
+    <p className="profile__title">Привет, Виталий!</p>
     <div className="profile__form-container">
       <form className="profile__form">
         <label className="profile__form-label"> Имя

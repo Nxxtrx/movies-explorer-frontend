@@ -1,12 +1,19 @@
-import MoviesCard from "../MoviesCard/MoviesCard";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Preloader from "../Preloader/Preloader";
+import { useState } from "react";
 
 export default function Movies() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  setTimeout(() => {
+    setIsLoading(false)
+  }, 3000)
+
   return(
-    <>
+    <div className="movies">
       <SearchForm />
-      <MoviesCardList />
-    </>
+      {isLoading ? <Preloader /> : <MoviesCardList />}
+    </div>
   )
 }

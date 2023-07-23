@@ -21,7 +21,7 @@ function App() {
 
     return (
         <div className="page">
-            {location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies' || location.pathname === 'profile'
+            {location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies' || location.pathname === '/profile'
               ? <Header />
               : ''
             }

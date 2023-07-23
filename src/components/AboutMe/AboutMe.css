@@ -15,19 +15,22 @@
   font-size: 50px;
   font-weight: 400;
   margin: 0;
+  letter-spacing: -2px;
 }
 
 .about__career{
   font-size: 18px;
   font-weight: 500;
   margin-top: 18px;
+  margin-bottom: 0;
 }
 
 .about__biography{
   font-size: 14px;
   font-weight: 400;
-  line-height: calc(18 / 14);
+  line-height: calc(22 / 14);
   max-width: 600px;
+  margin-top: 26px;
   margin-bottom: 99px;
 }
 
@@ -36,11 +39,120 @@
   color: #000;
   font-size: 14px;
   font-weight: 500;
+  opacity: 1;
+  transition: opacity .2s linear;
 }
+
+.about__link:hover{
+  opacity: .6;
+}
+
 
 .about__img{
   width: 270px;
   height: 327px;
   border-radius: 10px;
   object-fit:cover;
+}
+
+@media screen and (max-width: 1280px) {
+  .about{
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .about__container{
+    gap:49px;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .about{
+    padding-top: 90px;
+  }
+
+  .about__container{
+    margin-bottom: 90px;
+  }
+
+  .about__name{
+    font-size: 40px;
+    line-height: calc(40 / 40);
+    letter-spacing: -1.6px;
+  }
+
+  .about__career{
+    margin-top: 16px;
+    font-size: 12px;
+    line-height: calc(18 / 12);
+  }
+
+  .about__biography{
+    margin-top: 20px;
+    margin-bottom: 87px;
+    font-size: 12px;
+    line-height: calc(18 / 12);
+  }
+
+  .about__img{
+    width: 255px;
+    height: 307px;
+  }
+
+}
+
+@media screen and (max-width: 630px) {
+
+  .about__container{
+    flex-direction: column;
+  }
+
+  .about__img{
+    margin: 0 auto;
+    width: 292px;
+    height: 352px;
+  }
+
+  .about__description {
+    order: 2;
+  }
+
+  .about{
+    margin-left: 22px;
+    margin-right: 22px;
+  }
+}
+
+
+@media screen and (max-width: 320px) {
+
+  .about{
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+
+  .about__container{
+    flex-direction: column;
+    margin-top: 60px;
+    margin-bottom: 70px;
+    gap: 40px
+  }
+
+  .about__name{
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+
+  .about__career{
+    margin-top: 20px;
+    font-size: 11px;
+    line-height: calc(16 / 11);
+  }
+
+  .about__biography{
+    font-size: 11px;
+    line-height: calc(16 / 11);
+    margin-bottom: 40px;
+  }
 }

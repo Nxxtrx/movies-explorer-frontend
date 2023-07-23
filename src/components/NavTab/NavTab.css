@@ -12,6 +12,7 @@
 .nav-menu__links_type_auth{
   justify-content: space-between;
   padding-left: 44px;
+  gap: 16px;
 }
 
 .nav-menu__element{
@@ -26,8 +27,15 @@
 .nav-menu__link{
   color: #ffffff;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
+  line-height: calc(16 / 12);
+  opacity: 1;
+  transition: opacity .2s linear;
+}
+
+.nav-menu__link:hover{
+  opacity: .6;
 }
 
 .nav-menu__link_type_select{
@@ -36,6 +44,8 @@
 
 .nav-menu__link_type_auth{
   color: #000;
+  font-size: 13px;
+  line-height: calc(18 / 13);
 }
 
 .nav-menu__link_type_colored{
@@ -55,3 +65,18 @@
   font-size: 14px;
 }
 
+@media screen and (max-width: 320px) {
+  .nav-menu__links{
+    gap: 14px;
+  }
+
+  .nav-menu__link{
+    font-size: 10px;
+    font-weight: 500;
+    line-height: calc(16 / 10);
+  }
+
+  .nav-menu__link_type_colored{
+    padding: 3px 12px;
+  }
+}

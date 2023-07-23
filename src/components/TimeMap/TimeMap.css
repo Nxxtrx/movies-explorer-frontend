@@ -6,12 +6,18 @@
 
 .time-map__term{
   background-color: #2BE080;
-  padding: 9px calc(228px - 2 * 84px);
+  padding: 9px 0 10px;
   margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.time-map__backend{
+  flex-basis: 25%;
 }
 
 .time-map__frontend{
-  flex-grow: 1;
+  flex-basis: 100%;
 }
 
 .time-map__term_type_grey{
@@ -24,4 +30,30 @@
   color: #A0A0A0;
   font-weight: 500;
   margin-top: 14px;
+}
+
+@media screen and (max-width: 800px) {
+  .time-map__backend{
+    flex-basis: 26%;
+  }
+
+  .time-map__specialization{
+    font-weight: 400;
+    line-height: calc(17 / 14);
+  }
+}
+
+@media screen and (max-width: 440px) {
+
+  .time-map{
+    margin-top: 60px;
+  }
+
+  .time-map__term{
+    font-size: 11px;
+  }
+
+  .time-map__backend{
+    flex-basis: 50%;
+  }
 }

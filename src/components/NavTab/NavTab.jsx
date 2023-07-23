@@ -22,12 +22,12 @@ export default function NavTab() {
       ) : (
         <ul className="nav-menu__links nav-menu__links_type_auth">
           <li className="nav-menu__element nav-menu__element_type_auth">
-            <Link to='./movies' className="nav-menu__link nav-menu__link_type_auth nav-menu__link_type_select">
+            <Link to='./movies' className={`nav-menu__link nav-menu__link_type_auth ${ location.pathname === '/movies' ? 'nav-menu__link_type_select' : ''}`}>
               Фильмы
             </Link>
           </li>
           <li className="nav-menu__element nav-menu__element_type_auth">
-            <Link to="/saved-movies" className="nav-menu__link nav-menu__link_type_auth">
+            <Link to="/saved-movies" className={`nav-menu__link nav-menu__link_type_auth ${ location.pathname === '/saved-movies' ? 'nav-menu__link_type_select' : ''}`}>
               Сохраненные фильмы
             </Link>
           </li>

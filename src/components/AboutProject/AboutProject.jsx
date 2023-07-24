@@ -4,7 +4,7 @@ import './AboutProject.css'
 
 export default function AboutProject() {
   return(
-    <div className="project">
+    <section className="project">
 
       <MainTitle title = {'О проектe'} />
 
@@ -19,6 +19,6 @@ export default function AboutProject() {
         </div>
       </div>
       <TimeMap />
-    </div>
+    </section>
   )
 }

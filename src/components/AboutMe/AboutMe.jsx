@@ -5,7 +5,7 @@ import './AboutMe.css'
 
 export default function AboutMe() {
   return (
-    <div className="about">
+    <section className="about">
       <MainTitle title = {'Студент'} />
       <div className="about__container">
         <div className="about__description">
@@ -20,9 +20,9 @@ export default function AboutMe() {
           </p>
           <a href="https://github.com/Nxxtrx?tab=repositories" className="about__link" target='blank'>Github</a>
         </div>
-        <img className='about__img' src={MeImg} alt="" />
+        <img className='about__img' src={MeImg} alt="Фотография разработчика приложения" />
       </div>
       <Portfolio />
-    </div>
+    </section>
   );
 }

@@ -21,7 +21,7 @@ export default function Portfolio() {
         <li className="portfolio__element">
           <p className="portfolio__title-element">Одностраничное приложение</p>
           <a className="portfolio__link" href="https://github.com/Nxxtrx/react-mesto-api-full-gha" target='blank'>
-            <img className="portfolio__img-link" src={portfolioLink} alt="" />
+            <img className="portfolio__img-link" src={portfolioLink} alt="Иконка ссылки для перехода в проекты портфолио" />
           </a>
         </li>
       </ul>

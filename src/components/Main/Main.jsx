@@ -5,11 +5,11 @@ import AboutMe from "../AboutMe/AboutMe";
 
 export default function Main() {
     return(
-      <>
+      <div className="main">
         <Promo />
         <AboutProject />
         <Techs />
         <AboutMe />
-      </>
+      </div>
     )
 }

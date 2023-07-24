@@ -11,9 +11,9 @@ export default function Movies() {
   }, 3000)
 
   return(
-    <div className="movies">
+    <section className="movies">
       <SearchForm />
       {isLoading ? <Preloader /> : <MoviesCardList />}
-    </div>
+    </section>
   )
 }

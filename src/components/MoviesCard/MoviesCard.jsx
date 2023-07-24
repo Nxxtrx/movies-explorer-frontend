@@ -8,7 +8,7 @@ export default function MoviesCard({image, name, time, cardAdded}) {
   return (
     <div className="card">
       <div className="card__container">
-        <img className="card__image" src={`${image}`} alt="" />
+        <img className="card__image" src={`${image}`} alt={name} />
         {location.pathname === '/movies'
         ? cardAdded
           ? (

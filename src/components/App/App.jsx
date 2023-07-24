@@ -4,9 +4,6 @@ import '../../vendor/fonts/fonts.css'
 import './App.css'
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-import AboutProject from "../AboutProject/AboutProject";
-import Techs from "../Techs/Techs";
-import AboutMe from "../AboutMe/AboutMe";
 import Movies from '../Movies/Movies'
 import Footer from "../Footer/Footer";
 import { Route, Routes, useLocation } from "react-router-dom";

@@ -16,6 +16,11 @@
   align-items: center;
   height: 48px;
   flex-grow: 1;
+  transition: border-color .3s;
+}
+
+.search__form:focus-within{
+  border-color: #ff6838;
 }
 
 .search__input{
@@ -46,6 +51,12 @@
   cursor: pointer;
   opacity: 1;
   transition: opacity .2s linear;
+}
+
+.search__btn-submit_type_disabled{
+  background-color: #EBEBEB;
+  color: #000000;
+  opacity: 0.8;
 }
 
 .search__btn-submit:hover{

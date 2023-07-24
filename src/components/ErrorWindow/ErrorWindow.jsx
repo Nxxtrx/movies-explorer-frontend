@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom'
 import './ErrorWindow.css'
 
 export default function ErrorWindow() {
   return(
-    <div className="error">
+    <section className="error">
       <h3 className="error__title">404</h3>
       <p className="error__description">Страница не найдена</p>
-      <a className="error__link" href="#">Назад</a>
-    </div>
+      <Link to="/" className="error__link" >Назад</Link>
+    </section>
   )
 }

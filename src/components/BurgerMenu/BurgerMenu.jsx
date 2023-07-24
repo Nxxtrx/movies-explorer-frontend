@@ -5,7 +5,7 @@ export default function BurgerMenu({isOpened, onClose}) {
   const location = useLocation()
 
   return(
-    <section className = {`burger-menu ${isOpened ? 'burger-menu_type_opened' : ''}`} >
+    <div className = {`burger-menu ${isOpened ? 'burger-menu_type_opened' : ''}`} >
       <ul className="burger-menu__links">
         <li className="burger-menu__element">
           <Link to='/' onClick={onClose} className="burger-menu__link">Главная</Link>
@@ -21,6 +21,6 @@ export default function BurgerMenu({isOpened, onClose}) {
         </li>
       </ul>
       <button className="burger-menu__close-btn" onClick={onClose} type="button"></button>
-    </section>
+    </div>
   )
 }

@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import './MoviesCard.css'
-import saveCardIcon from '../../images/save-icon.svg'
+import './MoviesCard.css';
 
 export default function MoviesCard({image, name, time, cardAdded}) {
   const location = useLocation();
@@ -12,7 +11,7 @@ export default function MoviesCard({image, name, time, cardAdded}) {
         {location.pathname === '/movies'
         ? cardAdded
           ? (
-            <img className="card__remove-save" src={saveCardIcon} alt=''/>
+            <button className="card__remove-save" />
           ) : (
             <button className="card__save-btn">Сохранить</button>
           )

@@ -22,7 +22,7 @@ function Header() {
   const isMobile = useBurgerMenu();
 
   return(
-    <section className={`header ${location.pathname === '/' ? 'header_type_colored' : ''}`}>
+    <header className={`header ${location.pathname === '/' ? 'header_type_colored' : ''}`}>
       <div className={`header__container ${location.pathname === '/' ? '' : 'header__container_type_auth'}`}>
         <Link to="/"><img src={headerLogo} className="header__logo" alt="Логотип" /></Link>
         {isMobile && (location.pathname === '/movies' || location.pathname === '/saved-movies' || location.pathname === '/profile')
@@ -31,7 +31,7 @@ function Header() {
         }
         <BurgerMenu isOpened={isBurgermenuOpened} onClose={closeBurgerMenu} />
       </div>
-    </section>
+    </header>
   )
 }
 

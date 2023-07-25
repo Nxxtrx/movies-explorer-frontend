@@ -13,7 +13,7 @@ export default function Profile() {
   }
 
   return(
-  <section className="profile">
+  <main className="profile">
     <p className="profile__title">Привет, Виталий!</p>
     <div className="profile__form-container">
       <form className="profile__form" noValidate onSubmit={handleSubmit}>
@@ -29,6 +29,6 @@ export default function Profile() {
       </form>
     </div>
     <Link to="/" className="profile__signout-btn">Выйти из аккаунта</Link>
-  </section>
+  </main>
   )
 }

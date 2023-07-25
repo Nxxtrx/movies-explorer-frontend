@@ -13,9 +13,9 @@ export default function SavedMovies() {
   }, 3000)
 
   return(
-    <section className="movies">
+    <main className="movies">
       <SearchForm />
       {isLoading ? <Preloader /> : <MoviesCardList />}
-    </section>
+    </main>
   )
 }

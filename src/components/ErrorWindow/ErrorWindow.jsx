@@ -3,10 +3,10 @@ import './ErrorWindow.css'
 
 export default function ErrorWindow() {
   return(
-    <section className="error">
+    <main className="error">
       <h3 className="error__title">404</h3>
       <p className="error__description">Страница не найдена</p>
       <Link to="/" className="error__link" >Назад</Link>
-    </section>
+    </main>
   )
 }

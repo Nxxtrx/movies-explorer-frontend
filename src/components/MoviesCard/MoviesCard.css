@@ -1,0 +1,111 @@
+.card__container{
+  max-width: 360px;
+  position: relative;
+}
+
+.card__image{
+  height: 201px;
+  width: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.card__save-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  border-radius: 30px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: calc(10 / 9);
+  width: 72px;
+  height: 21px;
+  visibility: hidden;
+  transition: visibility .1s linear;
+}
+
+.card__container:hover .card__save-btn {
+  visibility: visible;
+}
+
+.card__save-btn_type_remove{
+  background-image: url('../../images/delete-icon.svg');
+  width: 21px;
+  height: 21px;
+}
+
+.card__remove-save{
+  background-image: url('../../images/save-icon.svg');
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: rgba(240, 248, 255, 0);
+  border: none;
+  width: 21px;
+  height: 21px;
+}
+
+
+.card__description{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 11px;
+  font-size: 13px;
+  margin-left: calc(84px - 70px);
+}
+
+.card__title{
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.card__duration{
+  margin: 0 19px 0 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: calc(10 / 11);
+  background-color: #F9F9F9;
+  border-radius: 3px;
+  padding: 4px 9px;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .card__container{
+    max-width: 339px;
+  }
+
+  .card__image{
+    height: 190px;
+  }
+
+  .card__description{
+    margin-left: 0;
+    margin-top: 21px;
+  }
+
+  .card__duration{
+    margin-right: 0;
+  }
+}
+
+
+@media screen and (max-width: 370px) {
+  .card__description{
+    margin-top: 12px;
+  }
+
+  .card__image{
+    height: 168px;
+  }
+
+  .card__title{
+    font-size: 12px;
+  }
+}
+

@@ -1,0 +1,14 @@
+.input-error {
+  color: #EE3465;
+  font-size: 10px;
+  font-weight: 400;
+  margin-top: 2px;
+  min-height: 24px;
+  text-align: justify;
+}
+
+@media screen and (max-width: 600px) {
+  .input-error{
+    max-width: 260px;
+  }
+}

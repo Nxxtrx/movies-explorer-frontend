@@ -1,0 +1,16 @@
+.title{
+  font-size: 22px;
+  font-weight: 400;
+  border-bottom: 1px solid black;
+  padding-bottom: 23px;
+  line-height: normal;
+  margin: 0;
+  letter-spacing: -0.88px;
+}
+
+@media screen and (max-width: 320px) {
+  .title{
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+}

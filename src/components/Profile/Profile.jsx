@@ -1,15 +1,26 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './Profile.css'
 import ErrorInput from '../ErrorInput/ErrorInput';
 import { useFormAndValidation } from '../../hooks/useValidation';
+import { useEffect } from 'react';
 
-export default function Profile() {
-  const { values, handleChange, errors, isValid} = useFormAndValidation()
-
+export default function Profile({currentUser, onUpdateUser, onSignOut}) {
+  const { values, handleChange, errors, isValid, setValues} = useFormAndValidation()
   const {name, email} = values
+
+  console.log(currentUser)
+
+  useEffect(() => {
+    setValues({name: currentUser.name, email: currentUser.email})
+  }, [])
 
   function handleSubmit(e) {
     e.preventDefault()
+    console.log(name)
+    onUpdateUser({
+      name: name,
+      email: email
+    })
   }
 
   return(
@@ -28,7 +39,7 @@ export default function Profile() {
         <button className={`profile__btn-submit ${!isValid ? 'profile__btn-submit_type_inactive' : ''}`} disabled={!isValid}>Редактировать</button>
       </form>
     </div>
-    <Link to="/" className="profile__signout-btn">Выйти из аккаунта</Link>
+    <button to="/" onClick={onSignOut} className="profile__signout-btn">Выйти из аккаунта</button>
   </main>
   )
 }

@@ -4,10 +4,21 @@ import './MoviesCard.css';
 export default function MoviesCard({image, name, time, cardAdded}) {
   const location = useLocation();
 
+  function convertTime(time) {
+    const hours = Math.floor(time / 60);
+    const minutes = time % 60;
+
+    if(hours === 0) {
+      return `0ч ${minutes}м `
+    } else {
+      return `${hours}ч ${minutes}м `
+    }
+  }
+
   return (
     <div className="card">
       <div className="card__container">
-        <img className="card__image" src={`${image}`} alt={name} />
+        <img className="card__image" src={"https://api.nomoreparties.co" + image} alt={name} />
         {location.pathname === '/movies'
         ? cardAdded
           ? (
@@ -19,7 +30,7 @@ export default function MoviesCard({image, name, time, cardAdded}) {
       }
         <div className="card__description">
           <p className="card__title">{name}</p>
-          <p className="card__duration">{time}</p>
+          <p className="card__duration">{convertTime(time)}</p>
         </div>
       </div>
     </div>

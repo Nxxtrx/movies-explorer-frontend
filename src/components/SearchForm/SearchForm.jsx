@@ -3,7 +3,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import { useFormAndValidation } from '../../hooks/useValidation'
 import { useEffect } from 'react'
 
-export default function SearchForm() {
+export default function SearchForm({onSearchFilm}) {
   const { values, handleChange, isValid, setIsValid} = useFormAndValidation()
 
   const {movie} = values
@@ -14,6 +14,7 @@ export default function SearchForm() {
 
   function handleSubmit(e) {
     e.preventDefault()
+    onSearchFilm(movie)
   }
 
   return(

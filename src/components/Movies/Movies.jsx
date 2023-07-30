@@ -3,8 +3,9 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import { useState } from "react";
 
-export default function Movies() {
+export default function Movies({movies}) {
   const [isLoading, setIsLoading] = useState(true)
+  const [isSearchFilms, setIsSearhFilms] = useState('')
 
   setTimeout(() => {
     setIsLoading(false)
@@ -12,8 +13,8 @@ export default function Movies() {
 
   return(
     <main className="movies">
-      <SearchForm />
-      {isLoading ? <Preloader /> : <MoviesCardList />}
+      <SearchForm onSearchFilm={setIsSearhFilms}/>
+      {isLoading ? <Preloader /> : <MoviesCardList movies={movies} searchFilm={isSearchFilms}/>}
     </main>
   )
 }

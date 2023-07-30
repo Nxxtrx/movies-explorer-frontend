@@ -14,6 +14,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import ErrorWindow from "../ErrorWindow/ErrorWindow";
 import { api } from "../../utils/MainApi";
+import * as MoviesApi from '../../utils/MoviesApi'
 
 function App() {
   const location = useLocation();
@@ -22,17 +23,19 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [currentUser, setCurrentUser] = useState('')
-
+  const [movies, setMovies] = useState([])
 
   React.useEffect(() => {
     handleTokenCheck()
   }, [])
 
-  console.log(loggedIn)
-
   React.useEffect(() => {
     api.getUserInfo().then((data) => {
       setCurrentUser(data)
+    }).catch((err) => console.log(err))
+
+    MoviesApi.getMovies().then((data) =>{
+      setMovies(data)
     }).catch((err) => console.log(err))
   }, [loggedIn])
 
@@ -85,7 +88,11 @@ function App() {
 
   function handleUpdateUser(name, email) {
     api.updateUser(name, email).then((data) => {
-      setCurrentUser(data)
+      if(data._id) {
+        setCurrentUser(data)
+      } else {
+        setErrorMessage(data.message)
+      }
     }).catch((err) => console.log(err))
   }
 
@@ -105,9 +112,9 @@ function App() {
       }
       <Routes>
         <Route path="/" element={<Main /> } />
-        <Route path="/movies" element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn} />} />
+        <Route path="/movies" element={<ProtectedRouteElement element={Movies} movies={movies} loggedIn={loggedIn} />} />
         <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} />} />
-        <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} currentUser={currentUser} onUpdateUser={handleUpdateUser} onSignOut={handleSignOut}/>} />
+        <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} currentUser={currentUser} onUpdateUser={handleUpdateUser} onSignOut={handleSignOut} setErrorMessage={setErrorMessage} errorMessage={errorMessage}/>} />
         <Route path="/signin" element={<Login onAuthUser={handleAuthUser} errorMessage={errorMessage} />} />
         <Route path="/signup" element={<Register onRegisterUser={handleRegisterUser} errorMessage={errorMessage}/>} />
         <Route path="/*" element={<ErrorWindow />} />

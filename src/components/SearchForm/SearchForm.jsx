@@ -2,14 +2,18 @@ import './SearchForm.css'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import { useFormAndValidation } from '../../hooks/useValidation'
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 export default function SearchForm({onSearchFilm, isChecked, onCheckboxChange, isSearchFilms}) {
   const { values, handleChange, isValid, setIsValid, setValues} = useFormAndValidation()
   const {movie} = values
+  const location = useLocation()
 
   useEffect(() => {
     setIsValid(false);
-    setValues({movie: localStorage.getItem('searchFilms')})
+    if(location.pathname === '/movies') {
+      setValues({movie: localStorage.getItem('searchFilms')})
+    }
   }, [])
 
   function handleSubmit(e) {

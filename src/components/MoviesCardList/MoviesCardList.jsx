@@ -3,10 +3,10 @@ import MoviesCard from '../MoviesCard/MoviesCard'
 import './MoviesCardList.css'
 import { useEffect, useState } from 'react';
 
-export default function MoviesCardList({movies, isChecked}) {
+export default function MoviesCardList({movies, isChecked, onLikecard, savedMovies, onDeleteCard}) {
 
   const location = useLocation();
-  const [filterMoviesList, setFilterMoviesList] = useState(JSON.parse(localStorage.getItem('movies')) || [])
+  const [filterMoviesList, setFilterMoviesList] = useState([])
   const [showedCard, setShowedCard] = useState([])
   const [loadMore, setLoadMore] = useState(12)
   const [isWideScreen, setIsWideScreen] = useState(true)
@@ -26,9 +26,9 @@ export default function MoviesCardList({movies, isChecked}) {
 
   }, [movies, isChecked])
 
-  useEffect(() => {
-    localStorage.setItem('movies', JSON.stringify(filterMoviesList))
-  }, [filterMoviesList])
+  // useEffect(() => {
+  //   localStorage.setItem('movies', JSON.stringify(filterMoviesList))
+  // }, [filterMoviesList])
 
   const updateShowedCards = () => {
     setShowedCard(filterMoviesList.slice(0, loadMore))
@@ -64,10 +64,7 @@ export default function MoviesCardList({movies, isChecked}) {
   return(
     <div className="cards">
       <div className='cards__list'>
-        {location.pathname === '/movies'
-          ? showedCard.map((item) => <MoviesCard key={item.id} image={item.image.url} name={item.nameRU} time={Number(item.duration)}/>)
-          : filterMoviesList.map((item) => <MoviesCard key={item.id} image={item.image.url} name={item.name} time={item.time} cardAdded={item.cardAdded}/>)
-        }
+        {showedCard.map((item) => <MoviesCard key={item.id || item._id} card={item} onLikecard={onLikecard} image={item.image.url} name={item.nameRU} time={Number(item.duration)} savedMovies={savedMovies} onDeleteCard={onDeleteCard}/>) }
       </div>
         <div className={`cards__more-container ${location.pathname=== '/saved-movies' ? "cards__more-container_type_empty" : ''}` } >
           {filterMoviesList.length > loadMore ? (

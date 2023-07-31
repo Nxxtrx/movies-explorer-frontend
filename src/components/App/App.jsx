@@ -23,6 +23,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [currentUser, setCurrentUser] = useState('')
+
+  const [savedMovies, setSavedMovies] = useState([])
   const [movies, setMovies] = useState([])
 
   const [isLoading, setIsLoading] = useState(false)
@@ -35,19 +37,18 @@ function App() {
     api.getUserInfo().then((data) => {
       setCurrentUser(data)
     }).catch((err) => console.log(err))
-
-
-
   }, [loggedIn])
 
   useEffect(() => {
     setIsLoading(true)
-    MoviesApi.getMovies().then((data) =>{
-      setMovies(data)
-    }).catch((err) => console.log(err))
-    .finally(() => setIsLoading(false))
+    Promise.all([MoviesApi.getMovies(), api.getSavedMovies()])
+      .then(([movies, savedMovies]) => {
+        setMovies(movies);
+        setSavedMovies(savedMovies)
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false))
   }, [loggedIn])
-
 
   React.useEffect(() => {
     setErrorMessage('')
@@ -114,6 +115,21 @@ function App() {
     }).catch((err) => console.log(err))
   }
 
+  function handleLikeCard(card) {
+    api.setLikeCard(card)
+      .then((res) => {
+        setSavedMovies(movies => [...movies, res])
+      })
+      .catch((err) => console.log(err))
+  }
+
+  function handleDeleteCard(card) {
+    console.log(card)
+    api.handleDeleteCard(card).then(() => {
+      setSavedMovies(movies => movies.filter(movie => movie._id !== card));
+    }).catch((err) => console.log(err))
+  }
+
   return (
     <div className="page">
       {location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies' || location.pathname === '/profile'
@@ -122,8 +138,8 @@ function App() {
       }
       <Routes>
         <Route path="/" element={<Main /> } />
-        <Route path="/movies" element={<ProtectedRouteElement element={Movies} movies={movies} loggedIn={loggedIn} isLoading={isLoading}/>} />
-        <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} />} />
+        <Route path="/movies" element={<ProtectedRouteElement element={Movies} onLikecard={handleLikeCard} movies={movies} savedMovies={savedMovies} loggedIn={loggedIn} isLoading={isLoading}/>} />
+        <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} savedMovies={savedMovies} onDeleteCard={handleDeleteCard}/>} />
         <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} currentUser={currentUser} onUpdateUser={handleUpdateUser} onSignOut={handleSignOut} setErrorMessage={setErrorMessage} errorMessage={errorMessage}/>} />
         <Route path="/signin" element={<Login onAuthUser={handleAuthUser} errorMessage={errorMessage} />} />
         <Route path="/signup" element={<Register onRegisterUser={handleRegisterUser} errorMessage={errorMessage}/>} />

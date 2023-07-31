@@ -25,6 +25,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState('')
   const [movies, setMovies] = useState([])
 
+  const [isLoading, setIsLoading] = useState(false)
+
   React.useEffect(() => {
     handleTokenCheck()
   }, [])
@@ -34,10 +36,18 @@ function App() {
       setCurrentUser(data)
     }).catch((err) => console.log(err))
 
+
+
+  }, [loggedIn])
+
+  useEffect(() => {
+    setIsLoading(true)
     MoviesApi.getMovies().then((data) =>{
       setMovies(data)
     }).catch((err) => console.log(err))
+    .finally(() => setIsLoading(false))
   }, [loggedIn])
+
 
   React.useEffect(() => {
     setErrorMessage('')
@@ -112,7 +122,7 @@ function App() {
       }
       <Routes>
         <Route path="/" element={<Main /> } />
-        <Route path="/movies" element={<ProtectedRouteElement element={Movies} movies={movies} loggedIn={loggedIn} />} />
+        <Route path="/movies" element={<ProtectedRouteElement element={Movies} movies={movies} loggedIn={loggedIn} isLoading={isLoading}/>} />
         <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} loggedIn={loggedIn} />} />
         <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} currentUser={currentUser} onUpdateUser={handleUpdateUser} onSignOut={handleSignOut} setErrorMessage={setErrorMessage} errorMessage={errorMessage}/>} />
         <Route path="/signin" element={<Login onAuthUser={handleAuthUser} errorMessage={errorMessage} />} />

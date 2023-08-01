@@ -120,10 +120,6 @@ class MainApi{
     .catch((err) => console.log(err))
   }
 
-  // changeLikeCardStatus(cardId, card, isLiked) {
-  //   return isLiked ? this.deleteCard(cardId) : this.setLikeCard(card)
-  // }
-
   handleDeleteCard(cardId) {
     this._request = this._baseUrl + '/movies/' + cardId;
     return fetch(this._request, {

@@ -4,7 +4,7 @@ import { useFormAndValidation } from '../../hooks/useValidation'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-export default function SearchForm({onSearchFilm, isChecked, onCheckboxChange, isSearchFilms}) {
+export default function SearchForm({onSearchFilm, isChecked, onCheckboxChange, isSearchFilms, onCheckInput}) {
   const { values, handleChange, isValid, setIsValid, setValues} = useFormAndValidation()
   const {movie} = values
   const location = useLocation()
@@ -15,6 +15,12 @@ export default function SearchForm({onSearchFilm, isChecked, onCheckboxChange, i
       setValues({movie: localStorage.getItem('searchFilms')})
     }
   }, [])
+
+  useEffect(() => {
+    if(location.pathname === '/saved-movies' && !movie) {
+      onCheckInput(movie)
+    }
+  }, [movie])
 
   function handleSubmit(e) {
     e.preventDefault()

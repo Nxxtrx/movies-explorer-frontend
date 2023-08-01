@@ -3,9 +3,12 @@ import MoviesCard from '../MoviesCard/MoviesCard'
 import './MoviesCardList.css'
 import { useEffect, useState } from 'react';
 
-export default function MoviesCardList({movies, isChecked, onLikecard, savedMovies, onDeleteCard}) {
+export default function MoviesCardList({movies, isChecked, onLikecard, savedMovies, onDeleteCard, errorMessage, isSearchFilms}) {
 
   const location = useLocation();
+
+  const [saveRequest, setSaveRequest] = useState(JSON.parse(localStorage.getItem('movies')) || [])
+
   const [filterMoviesList, setFilterMoviesList] = useState([])
   const [showedCard, setShowedCard] = useState([])
   const [loadMore, setLoadMore] = useState(12)
@@ -13,7 +16,11 @@ export default function MoviesCardList({movies, isChecked, onLikecard, savedMovi
 
   useEffect(() => {
     updateCardsOnScreen();
-  }, [])
+    updateShowedCards()
+    if(location.pathname === '/movies') {
+      localStorage.setItem('movies', JSON.stringify(filterMoviesList));
+    }
+  }, [filterMoviesList])
 
   useEffect(() => {
     setFilterMoviesList(movies)
@@ -22,16 +29,23 @@ export default function MoviesCardList({movies, isChecked, onLikecard, savedMovi
       setFilterMoviesList(movies.filter(function(movie) {
         return movie.duration <= 40
       }))
+      setSaveRequest(filterMoviesList)
     }
+    setSaveRequest(filterMoviesList)
 
-  }, [movies, isChecked])
+  }, [movies, isChecked, isSearchFilms])
 
-  // useEffect(() => {
-  //   localStorage.setItem('movies', JSON.stringify(filterMoviesList))
-  // }, [filterMoviesList])
+  useEffect(() => {
+    if(location.pathname === '/movies') {
+      setSaveRequest(filterMoviesList)
+      localStorage.setItem('movies', JSON.stringify(saveRequest))
+    }
+  }, [isSearchFilms])
 
   const updateShowedCards = () => {
-    setShowedCard(filterMoviesList.slice(0, loadMore))
+    if(!errorMessage){
+      setShowedCard(filterMoviesList.slice(0, loadMore))
+    }
   }
 
   const updateCardsOnScreen = () => {
@@ -63,15 +77,19 @@ export default function MoviesCardList({movies, isChecked, onLikecard, savedMovi
 
   return(
     <div className="cards">
-      <div className='cards__list'>
-        {showedCard.map((item) => <MoviesCard key={item.id || item._id} card={item} onLikecard={onLikecard} image={item.image.url} name={item.nameRU} time={Number(item.duration)} savedMovies={savedMovies} onDeleteCard={onDeleteCard}/>) }
-      </div>
-        <div className={`cards__more-container ${location.pathname=== '/saved-movies' ? "cards__more-container_type_empty" : ''}` } >
-          {filterMoviesList.length > loadMore ? (
-            <button className={`cards__btn-more ${location.pathname=== '/movies' ? "cards__btn-more_type_active" : ''}`} type='click' onClick={handleLoadMore}>Еще</button>
-          ) : ''
+      {errorMessage || showedCard.length === 0 ? <p className='cards__error'>{errorMessage ? errorMessage : 'Ничего не найдено'}</p>
+        : (
+          <div className='cards__list'>
+            {showedCard.map((item) => <MoviesCard key={item.id || item._id} card={item} onLikecard={onLikecard} image={item.image.url} name={item.nameRU} time={Number(item.duration)} savedMovies={savedMovies} onDeleteCard={onDeleteCard}/>) }
+          </div>
+        )
+      }
+      <div className={`cards__more-container ${location.pathname=== '/saved-movies' ? "cards__more-container_type_empty" : ''}` } >
+        {filterMoviesList.length > loadMore ? (
+          <button className='cards__btn-more cards__btn-more_type_active' type='click' onClick={handleLoadMore}>Еще</button>
+        ) : ''
         }
-        </div>
+      </div>
     </div>
   )
 }

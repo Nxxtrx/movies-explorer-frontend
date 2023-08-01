@@ -29,7 +29,15 @@ export default function MoviesCard({card, image, name, time, onLikecard, savedMo
   }
 
   function handleDeleteCard() {
-    onDeleteCard(card._id)
+
+    if(location.pathname === '/movies') {
+      const findMove = savedMovies.find(savedMovie => savedMovie.movieId === card.id)
+      if (findMove) {
+        onDeleteCard(findMove._id)
+      }
+    } else {
+      onDeleteCard(card._id)
+    }
   }
 
   return (
@@ -43,7 +51,7 @@ export default function MoviesCard({card, image, name, time, onLikecard, savedMo
         {location.pathname === '/movies'
         ? isLiked
           ? (
-            <button className="card__remove-save" />
+            <button className="card__remove-save" onClick={handleDeleteCard}/>
           ) : (
             <button className="card__save-btn" onClick={handleLikeCard}>Сохранить</button>
           )

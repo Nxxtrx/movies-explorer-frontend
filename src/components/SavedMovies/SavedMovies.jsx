@@ -4,16 +4,19 @@ import Preloader from "../Preloader/Preloader"
 import './SavedMovies.css'
 import { useEffect, useState } from "react"
 
-export default function SavedMovies({savedMovies, onDeleteCard}) {
+export default function SavedMovies({savedMovies, onDeleteCard, errorMessage}) {
 
   const [isChecked, setIsChecked] = useState(false);
   const [moviesList, setMoviesList] = useState([])
+  const [searhRequest, setSearchRequest] = useState('')
 
   useEffect(() => {
     setMoviesList(savedMovies)
+  }, [])
+
+  useEffect(() => {
+    handleSearchMovies(searhRequest)
   }, [onDeleteCard])
-
-
 
   const handleCheckbox = (event) => {
     setIsChecked(event.target.checked)
@@ -23,15 +26,21 @@ export default function SavedMovies({savedMovies, onDeleteCard}) {
     const searchMoviesList = savedMovies.filter(function(movie) {
       return movie.nameRU.toLowerCase().includes(searchFilm.toLowerCase()) || movie.nameEN.toLowerCase().includes(searchFilm.toLowerCase())
     })
-
+    setSearchRequest(searchFilm)
     setMoviesList(searchMoviesList)
+  }
+
+  function checkedInput(searchInput) {
+    if(!searchInput){
+      setMoviesList(savedMovies)
+    }
   }
 
 
   return(
     <main className="movies">
-      <SearchForm isChecked={isChecked} onCheckboxChange={handleCheckbox} onSearchFilm={handleSearchMovies}/>
-      <MoviesCardList movies={moviesList} isChecked={isChecked} onDeleteCard={onDeleteCard}/>
+      <SearchForm isChecked={isChecked} onCheckboxChange={handleCheckbox} onSearchFilm={handleSearchMovies} onCheckInput={checkedInput}/>
+      <MoviesCardList movies={moviesList} isChecked={isChecked} onDeleteCard={onDeleteCard} errorMessage={errorMessage}/>
     </main>
   )
 }

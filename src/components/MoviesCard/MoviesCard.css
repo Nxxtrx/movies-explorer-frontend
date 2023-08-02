@@ -105,6 +105,18 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .card__remove-save_type_mobile{
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .card__save-btn_type_mobile{
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 
 @media screen and (max-width: 370px) {
   .card__description{

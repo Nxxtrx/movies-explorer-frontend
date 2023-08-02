@@ -52,11 +52,11 @@ export default function MoviesCard({card, image, name, time, onLikecard, savedMo
         {location.pathname === '/movies'
         ? isLiked
           ? (
-            <button className="card__remove-save" onClick={handleDeleteCard}/>
+            <button className="card__remove-save card__remove-save_type_mobile" onClick={handleDeleteCard}/>
           ) : (
-            <button className="card__save-btn" onClick={handleLikeCard}>Сохранить</button>
+            <button className="card__save-btn card__save-btn_type_mobile" onClick={handleLikeCard}>Сохранить</button>
           )
-        : <button className="card__save-btn card__save-btn_type_remove" onClick={handleDeleteCard}></button>
+        : <button className="card__save-btn card__save-btn_type_remove card__save-btn_type_mobile" onClick={handleDeleteCard}></button>
       }
         <div className="card__description">
           <p className="card__title">{name}</p>

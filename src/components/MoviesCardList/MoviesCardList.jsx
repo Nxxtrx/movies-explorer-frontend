@@ -85,7 +85,7 @@ export default function MoviesCardList({movies, isChecked, onLikecard, savedMovi
         )
       }
       <div className={`cards__more-container ${location.pathname=== '/saved-movies' ? "cards__more-container_type_empty" : ''}` } >
-        {filterMoviesList.length > loadMore ? (
+        {!errorMessage && filterMoviesList.length > loadMore ? (
           <button className='cards__btn-more cards__btn-more_type_active' type='click' onClick={handleLoadMore}>Еще</button>
         ) : ''
         }

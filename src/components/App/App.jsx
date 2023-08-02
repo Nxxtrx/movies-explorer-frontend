@@ -7,6 +7,7 @@ import Main from "../Main/Main";
 import Movies from '../Movies/Movies'
 import Footer from "../Footer/Footer";
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute'
+import { CurrentUserContext} from '../../contexts/CurrentUserContext'
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
@@ -14,51 +15,51 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import ErrorWindow from "../ErrorWindow/ErrorWindow";
 import { api } from "../../utils/MainApi";
-import * as MoviesApi from '../../utils/MoviesApi'
+import { moviesApi } from '../../utils/MoviesApi'
 
 function App() {
   const location = useLocation();
   const navigate = useNavigate()
 
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('userId') ? true : false)
   const [currentUser, setCurrentUser] = useState('')
 
   const [savedMovies, setSavedMovies] = useState([])
   const [movies, setMovies] = useState([])
 
   const [movieErrorMessage, setMovieErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
 
   const [isLoading, setIsLoading] = useState(false)
 
   React.useEffect(() => {
     handleTokenCheck()
-  }, [])
-
-  console.log(document.cookie)
+  }, [location.pathname])
 
   React.useEffect(() => {
-    api.getUserInfo().then((data) => {
-      setCurrentUser(data)
-    }).catch((err) => console.log(err))
+    if(loggedIn) {
+      api.getUserInfo().then((data) => {
+        setCurrentUser(data)
+      }).catch((err) => console.log(err))
+    }
   }, [loggedIn])
 
   useEffect(() => {
-    setIsLoading(true)
-    setMovieErrorMessage('')
-    Promise.all([MoviesApi.getMovies(), api.getSavedMovies()])
-      .then(([movies, savedMovies]) => {
-        setMovies(movies);
-        setSavedMovies(savedMovies)
-        if(movies.error || savedMovies.message) {
+    if(loggedIn) {
+      setIsLoading(true)
+      setMovieErrorMessage('')
+      Promise.all([moviesApi.getMovies(), api.getSavedMovies()])
+        .then(([movies, savedMovies]) => {
+          setMovies(movies);
+          setSavedMovies(savedMovies)
+        })
+        .catch((err) => {
+          console.log(err)
           setMovieErrorMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-
-      })
-      .finally(() => setIsLoading(false))
+        })
+        .finally(() => setIsLoading(false))
+    }
   }, [loggedIn])
 
   React.useEffect(() => {
@@ -73,7 +74,7 @@ function App() {
   function handleRegisterUser(name, email, password) {
     api.registr(name, email, password)
       .then((res) => {
-        if(res._id) {
+        if(res.email) {
           navigate('/signin')
         } else {
           setErrorMessage(res.message)
@@ -95,8 +96,6 @@ function App() {
       .catch((err) => console.log(err))
   }
 
-  console.log(document.cookie.includes('jwt'))
-
   function handleTokenCheck() {
     if(localStorage.getItem('userId')) {
       const jwt = localStorage.getItem('userId');
@@ -104,22 +103,23 @@ function App() {
         handleLoggedIn();
         if (res.message) {
           setLoggedIn(false)
-          navigate('/')
+          navigate('/signin')
           localStorage.clear()
         }
       })
       .catch((err) => console.log(`Ошибка: ${err}`))
     } else {
       setLoggedIn(false)
-      navigate('/')
       localStorage.clear()
     }
   }
 
   function handleUpdateUser(name, email) {
+    setSuccessMessage('')
     api.updateUser(name, email).then((data) => {
       if(data._id) {
         setCurrentUser(data)
+        setSuccessMessage('Редактирование профиля прошло успешно!')
       } else {
         setErrorMessage(data.message)
       }
@@ -130,6 +130,7 @@ function App() {
     api.signOutUser().then((res) => {
       localStorage.removeItem('userId')
       setLoggedIn(false)
+      localStorage.clear()
       navigate('/')
     }).catch((err) => console.log(err))
   }
@@ -149,64 +150,68 @@ function App() {
   }
 
   return (
-    <div className="page">
-      {location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies' || location.pathname === '/profile'
-        ? <Header loggedIn={loggedIn}/>
-        : ''
-      }
-      <Routes>
-        <Route path="/" element={<Main /> } />
-        <Route path="/movies" element={
-          <ProtectedRouteElement
-            element={Movies}
-            onLikecard={handleLikeCard}
-            movies={movies}
-            savedMovies={savedMovies}
-            loggedIn={loggedIn}
-            isLoading={isLoading}
-            onDeleteCard={handleDeleteCard}
-            errorMessage={movieErrorMessage}
-          />
-        } />
-        <Route path="/saved-movies" element={
-          <ProtectedRouteElement
-            element={SavedMovies}
-            loggedIn={loggedIn}
-            savedMovies={savedMovies}
-            onDeleteCard={handleDeleteCard}
-            errorMessage={movieErrorMessage}
-          />
-        }/>
-        <Route path="/profile" element={
-          <ProtectedRouteElement
-            element={Profile}
-            loggedIn={loggedIn}
-            currentUser={currentUser}
-            onUpdateUser={handleUpdateUser}
-            onSignOut={handleSignOut}
-            setErrorMessage={setErrorMessage}
-            errorMessage={errorMessage}
-          />
-        } />
-        <Route path="/signin" element={
-          <Login
-            onAuthUser={handleAuthUser}
-            errorMessage={errorMessage}
-          />
-        } />
-        <Route path="/signup" element={
-          <Register
-            onRegisterUser={handleRegisterUser}
-            errorMessage={errorMessage}
-          />
-        } />
-        <Route path="/*" element={<ErrorWindow />} />
-      </Routes>
-      {location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies'
-        ? <Footer />
-        : ''
-      }
-    </div>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        {location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies' || location.pathname === '/profile'
+          ? <Header loggedIn={loggedIn}/>
+          : ''
+        }
+        <Routes>
+          <Route path="/" element={<Main /> } />
+          <Route path="/movies" element={
+            <ProtectedRouteElement
+              element={Movies}
+              onLikecard={handleLikeCard}
+              movies={movies}
+              savedMovies={savedMovies}
+              loggedIn={loggedIn}
+              isLoading={isLoading}
+              onDeleteCard={handleDeleteCard}
+              errorMessage={movieErrorMessage}
+            />
+          } />
+          <Route path="/saved-movies" element={
+            <ProtectedRouteElement
+              element={SavedMovies}
+              loggedIn={loggedIn}
+              isLoading={isLoading}
+              savedMovies={savedMovies}
+              onDeleteCard={handleDeleteCard}
+              errorMessage={movieErrorMessage}
+            />
+          }/>
+          <Route path="/profile" element={
+            <ProtectedRouteElement
+              element={Profile}
+              loggedIn={loggedIn}
+              onUpdateUser={handleUpdateUser}
+              onSignOut={handleSignOut}
+              setErrorMessage={setErrorMessage}
+              errorMessage={errorMessage}
+              successMessage={successMessage}
+              setSuccessMessage={setSuccessMessage}
+            />
+          } />
+          <Route path="/signin" element={
+            <Login
+              onAuthUser={handleAuthUser}
+              errorMessage={errorMessage}
+            />
+          } />
+          <Route path="/signup" element={
+            <Register
+              onRegisterUser={handleRegisterUser}
+              errorMessage={errorMessage}
+            />
+          } />
+          <Route path="/*" element={<ErrorWindow />} />
+        </Routes>
+        {location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies'
+          ? <Footer />
+          : ''
+        }
+      </div>
+    </CurrentUserContext.Provider>
   )
 }
 

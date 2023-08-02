@@ -4,7 +4,7 @@ import Preloader from "../Preloader/Preloader"
 import './SavedMovies.css'
 import { useEffect, useState } from "react"
 
-export default function SavedMovies({savedMovies, onDeleteCard, errorMessage}) {
+export default function SavedMovies({savedMovies, onDeleteCard, errorMessage, isLoading}) {
 
   const [isChecked, setIsChecked] = useState(false);
   const [moviesList, setMoviesList] = useState([])
@@ -40,7 +40,7 @@ export default function SavedMovies({savedMovies, onDeleteCard, errorMessage}) {
   return(
     <main className="movies">
       <SearchForm isChecked={isChecked} onCheckboxChange={handleCheckbox} onSearchFilm={handleSearchMovies} onCheckInput={checkedInput}/>
-      <MoviesCardList movies={moviesList} isChecked={isChecked} onDeleteCard={onDeleteCard} errorMessage={errorMessage}/>
+      {isLoading ? <Preloader /> : <MoviesCardList movies={moviesList} isChecked={isChecked} onDeleteCard={onDeleteCard} errorMessage={errorMessage}/>}
     </main>
   )
 }

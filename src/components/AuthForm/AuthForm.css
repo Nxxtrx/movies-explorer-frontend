@@ -59,7 +59,7 @@
   color: #FF004C;
   font-size: 11px;
   text-align: center;
-  margin-top: 75px;
+  margin-top: 90px;
   min-height: 13px;
 }
 
@@ -74,7 +74,6 @@
   font-size: 14px;
   font-weight: 500;
   padding: 13px 0 15px;
-  margin-top: 20px;
   cursor: pointer;
   opacity: 1;
   transition: opacity .2s linear;
@@ -153,10 +152,6 @@
     min-width: 260px;
   }
 
-  .authorization__btn-submit{
-    margin-top: 206px;
-  }
-
   .authorization__btn-submit_type_login {
     margin-top: 279px;
   }
@@ -164,4 +159,9 @@
   .authorization__login-in{
     font-size: 12px;
   }
+
+  .authorization__submit-error{
+    margin-top: 180px;
+  }
+
 }

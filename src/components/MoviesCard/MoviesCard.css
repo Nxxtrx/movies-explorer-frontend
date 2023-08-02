@@ -9,7 +9,6 @@
   object-fit: cover;
   object-position: 50% 50%;
   border-radius: 6px;
-  cursor: pointer;
 }
 
 .card__save-btn {
@@ -27,6 +26,7 @@
   opacity: 0;
   transition: visibility .1s linear;
   transition: opacity .3s ease-in-out;
+  cursor: pointer;
 }
 
 
@@ -39,6 +39,7 @@
   background-image: url('../../images/delete-icon.svg');
   width: 21px;
   height: 21px;
+  cursor: pointer;
 }
 
 .card__remove-save{
@@ -50,6 +51,7 @@
   border: none;
   width: 21px;
   height: 21px;
+  cursor: pointer;
 }
 
 

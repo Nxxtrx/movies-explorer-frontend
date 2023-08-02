@@ -5,8 +5,8 @@ import Preloader from "../Preloader/Preloader";
 
 export default function Movies({movies, isLoading, onLikecard, savedMovies, onDeleteCard, errorMessage}) {
   const [isSearchFilms, setIsSearсhFilms] = useState(localStorage.getItem('searchFilms') || '')
-  const [isChecked, setIsChecked] = useState(JSON.parse(localStorage.getItem('movies')));
-  const [moviesList, setMoviesList] = useState(JSON.parse(localStorage.getItem('movies')) || [])
+  const [isChecked, setIsChecked] = useState(false) ;
+  const [moviesList, setMoviesList] = useState([])
 
 
   const handleCheckbox = (event) => {
@@ -15,18 +15,20 @@ export default function Movies({movies, isLoading, onLikecard, savedMovies, onDe
   }
 
   function handleSearchMovies(searchFilm) {
-    if(!errorMessage) {
-      const searchMoviesList = movies.filter(function(movie) {
-        return movie.nameRU.toLowerCase().includes(searchFilm.toLowerCase()) || movie.nameEN.toLowerCase().includes(searchFilm.toLowerCase())
-      })
 
-      setMoviesList(searchMoviesList)
-      setIsSearсhFilms(searchFilm)
-    }
+    const searchMoviesList = movies.filter(function(movie) {
+      return movie.nameRU.toLowerCase().includes(searchFilm.toLowerCase()) || movie.nameEN.toLowerCase().includes(searchFilm.toLowerCase())
+    })
+
+    setMoviesList(searchMoviesList)
+    setIsSearсhFilms(searchFilm)
+
   }
 
   useEffect(() => {
-    handleSearchMovies(isSearchFilms)
+    if(isSearchFilms) {
+      handleSearchMovies(isSearchFilms)
+    }
   }, [isChecked])
 
   useEffect(() => {

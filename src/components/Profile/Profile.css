@@ -119,17 +119,29 @@
   min-height: 13px;
 }
 
+.profile__submit-message{
+  color: #2BE080;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 165px;
+  min-height: 13px;
+}
+
 @media screen and (max-width: 768px) {
   .profile__title{
     margin-top: 162px;
   }
 
-  .profile__form-label:first-child{
-    margin-top: 80px;
+  .profile__submit-message{
+    margin-top: 130px;
   }
 
-  .profile__btn-edit{
-    margin-top: 155px;
+  .profile__submit-error{
+    margin-top: 130px;
+  }
+
+  .profile__form-label:first-child{
+    margin-top: 80px;
   }
 }
 
@@ -170,7 +182,6 @@
   }
 
   .profile__btn-edit{
-    margin-top: 323px;
     font-size: 12px;
   }
 
@@ -178,4 +189,13 @@
     font-size: 12px;
     font-weight: 500;
   }
+
+  .profile__submit-message{
+    margin-top: 301px;
+  }
+
+  .profile__submit-error{
+    margin-top: 301px;
+  }
+
 }

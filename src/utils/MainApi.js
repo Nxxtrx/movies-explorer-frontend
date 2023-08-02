@@ -133,7 +133,7 @@ class MainApi{
 }
 
 export const api = new MainApi({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.nxxtrx.nomoredomains.xyz/',
   headers: {
     'Content-Type': 'application/json'
   }

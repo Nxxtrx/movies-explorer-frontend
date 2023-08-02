@@ -3,6 +3,10 @@
   position: relative;
 }
 
+.card__link{
+  text-decoration: none;
+}
+
 .card__image{
   height: 201px;
   width: 100%;

@@ -43,11 +43,12 @@ export default function MoviesCard({card, image, name, time, onLikecard, savedMo
   return (
     <div className="card">
       <div className="card__container">
-        {location.pathname === '/movies'
-        ? <img className="card__image" src={"https://api.nomoreparties.co" + image} alt={name} />
-        : <img className="card__image" src={card.image} alt={name} />
-        }
-
+        <a className='card__link' href={card.trailerLink} target='_blank' rel='noreferrer'>
+          {location.pathname === '/movies'
+          ? <img className="card__image" src={"https://api.nomoreparties.co" + image} alt={name} />
+          : <img className="card__image" src={card.image} alt={name} />
+          }
+        </a>
         {location.pathname === '/movies'
         ? isLiked
           ? (

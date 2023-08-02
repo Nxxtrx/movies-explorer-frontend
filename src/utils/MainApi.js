@@ -95,7 +95,6 @@ class MainApi{
   }
 
   setLikeCard(card) {
-    console.log(card)
     this._request = this._baseUrl + '/movies'
     return fetch(this._request, {
       credentials: 'include',

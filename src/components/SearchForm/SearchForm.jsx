@@ -30,7 +30,7 @@ export default function SearchForm({onSearchFilm, isChecked, onCheckboxChange, o
   return(
     <div className="search">
       <form className="search__form" noValidate onSubmit={handleSubmit}>
-        <input className="search__input" name='movie' placeholder='Фильм' value={movie || ''} minLength={2} maxLength={30} onChange={handleChange} required></input>
+        <input className="search__input" name='movie' placeholder='Фильм' value={movie || ''} maxLength={30} onChange={handleChange} required></input>
         <button className= {`search__btn-submit ${!isValid ? 'search__btn-submit_type_disabled' : ''}`} disabled={!isValid} type="submit">Найти</button>
       </form>
       <FilterCheckbox isChecked={isChecked} onCheckboxChange={onCheckboxChange} />

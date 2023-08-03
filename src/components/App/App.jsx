@@ -35,7 +35,7 @@ function App() {
 
   React.useEffect(() => {
     handleTokenCheck()
-  }, [location.pathname])
+  }, [loggedIn])
 
   React.useEffect(() => {
     if(loggedIn) {
@@ -64,7 +64,7 @@ function App() {
 
   React.useEffect(() => {
     setErrorMessage('')
-  }, [location.pathname === '/signup' || '/signin'])
+  }, [location.pathname === '/signup' || location.pathname === '/signin' || location.pathname === '/profile'])
 
 
   function handleLoggedIn() {
@@ -75,7 +75,7 @@ function App() {
     api.registr(name, email, password)
       .then((res) => {
         if(res.email) {
-          navigate('/signin')
+          handleAuthUser(email, password)
         } else {
           setErrorMessage(res.message)
         }
@@ -196,12 +196,14 @@ function App() {
             <Login
               onAuthUser={handleAuthUser}
               errorMessage={errorMessage}
+              loggedIn={loggedIn}
             />
           } />
           <Route path="/signup" element={
             <Register
               onRegisterUser={handleRegisterUser}
               errorMessage={errorMessage}
+              loggedIn={loggedIn}
             />
           } />
           <Route path="/*" element={<ErrorWindow />} />

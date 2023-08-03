@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom'
 import MoviesCard from '../MoviesCard/MoviesCard'
 import './MoviesCardList.css'
 import { useEffect, useState } from 'react';
+import { DURATION, SMALL_SCREEN, AVERAGE_SCREEN, NUMBER_CARD_AVERAGE_SCREEN, NUMBER_CARD_HIGHT_SCREEN, NUMBER_CARD_LOW_SCREEN } from '../../utils/constants'
 
 export default function MoviesCardList({movies, isChecked, onLikecard, savedMovies, onDeleteCard, errorMessage, isSearchFilms}) {
 
@@ -11,7 +12,7 @@ export default function MoviesCardList({movies, isChecked, onLikecard, savedMovi
 
   const [filterMoviesList, setFilterMoviesList] = useState([])
   const [showedCard, setShowedCard] = useState([])
-  const [loadMore, setLoadMore] = useState(12)
+  const [loadMore, setLoadMore] = useState(NUMBER_CARD_HIGHT_SCREEN)
   const [isWideScreen, setIsWideScreen] = useState(true)
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function MoviesCardList({movies, isChecked, onLikecard, savedMovi
 
     if(isChecked) {
       setFilterMoviesList(movies.filter(function(movie) {
-        return movie.duration <= 40
+        return movie.duration <= DURATION
       }))
       setSaveRequest(filterMoviesList)
     }
@@ -49,15 +50,15 @@ export default function MoviesCardList({movies, isChecked, onLikecard, savedMovi
   }
 
   const updateCardsOnScreen = () => {
-    if(window.innerWidth < 690 ) {
+    if(window.innerWidth < SMALL_SCREEN ) {
       setIsWideScreen(false)
-      setLoadMore(5)
-    } else if(window.innerWidth < 1020) {
+      setLoadMore(NUMBER_CARD_LOW_SCREEN)
+    } else if(window.innerWidth < AVERAGE_SCREEN) {
       setIsWideScreen(false);
-      setLoadMore(8)
+      setLoadMore(NUMBER_CARD_AVERAGE_SCREEN)
     } else {
       setIsWideScreen(true);
-      setLoadMore(12)
+      setLoadMore(NUMBER_CARD_HIGHT_SCREEN)
     }
   }
 

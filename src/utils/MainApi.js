@@ -13,7 +13,6 @@ class MainApi{
       body: JSON.stringify({name, email, password})
     }).then((response) => response.json())
     .then((res) => res)
-    .catch((err) => console.log(err))
   }
 
   authorize(email, password) {
@@ -33,7 +32,6 @@ class MainApi{
       }
       return data;
     })
-    .catch((err) => console.log(err))
   }
 
   tokenCheck() {
@@ -44,10 +42,6 @@ class MainApi{
       headers: this._headers
     }).then((res) => res.json())
     .then((res) => {return res})
-    .catch((err) => {
-      console.log(err.message)
-      return err.message
-    })
   }
 
   getUserInfo() {
@@ -57,7 +51,6 @@ class MainApi{
       credentials: 'include',
       headers: this._headers,
     }).then((res) => res.json())
-    .catch((err) => console.log(err))
   }
 
   updateUser(name, email) {
@@ -69,7 +62,6 @@ class MainApi{
       body: JSON.stringify(name, email)
     }).then((res) => res.json())
     .then((res) => res)
-    .catch((err) => console.log(err))
   }
 
   signOutUser() {
@@ -80,7 +72,6 @@ class MainApi{
       headers: this._headers
     }).then((res) => res.json())
     .then((res) => res)
-    .catch((err) => console.log(err))
   }
 
   getSavedMovies() {
@@ -91,7 +82,6 @@ class MainApi{
       headers: this._headers
     }).then((res) => res.json())
     .then((res) => res)
-    .catch((err) => console.log(err))
   }
 
   setLikeCard(card) {
@@ -116,7 +106,6 @@ class MainApi{
       })
     }).then((res) => res.json())
     .then((res) => res)
-    .catch((err) => console.log(err))
   }
 
   handleDeleteCard(cardId) {
@@ -127,12 +116,12 @@ class MainApi{
       headers: this._headers
     }).then(res => res.json())
     .then((res) => res)
-    .catch(err => console.log(err))
   }
 }
 
 export const api = new MainApi({
   baseUrl: 'https://api.nxxtrx.nomoredomains.xyz',
+  // baseUrl: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json'
   }

@@ -16,12 +16,20 @@ export default function Profile({onUpdateUser, onSignOut, errorMessage, setError
   useEffect(() => {
     setValues({name: currentUser.name, email: currentUser.email})
     setIsValid(false)
-  }, [currentUser])
+  }, [currentUser, changeUserInfo])
 
   useEffect(() => {
-    setErrorMessage('')
-    setSuccessMessage('')
-  }, [location.pathname==='/profile'])
+    if(name === currentUser.name && email === currentUser.email) {
+      setIsValid(false)
+    }
+  }, [values])
+
+  useEffect(() => {
+    if (changeUserInfo) {
+      setErrorMessage('')
+      setSuccessMessage('')
+    }
+  }, [location.pathname === '/profile', handleChangeUserInfo])
 
 
   function handleSubmit(e) {
@@ -30,7 +38,9 @@ export default function Profile({onUpdateUser, onSignOut, errorMessage, setError
       name: name,
       email: email
     })
-    setIsValid(false)
+    if(!errorMessage) {
+      handleChangeUserInfo()
+    }
   }
 
   function handleChangeUserInfo() {

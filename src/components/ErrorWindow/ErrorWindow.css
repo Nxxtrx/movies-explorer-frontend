@@ -22,13 +22,14 @@
 }
 
 .error__link{
-  text-decoration: none;
   font-size: 14px;
   font-weight: 400;
   color: #FF6838;
-  display: block;
   text-align: center;
   margin-top: 184px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 500px) {

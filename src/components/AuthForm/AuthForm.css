@@ -55,6 +55,18 @@
   border-bottom-color: #FF6838;
 }
 
+.authorization__submit-error{
+  color: #FF004C;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 90px;
+  min-height: 13px;
+}
+
+.authorization__submit-error_type_login{
+  margin-top: 147px;
+}
+
 .authorization__btn-submit{
   border: none;
   background-color: #FF6838;
@@ -62,7 +74,6 @@
   font-size: 14px;
   font-weight: 500;
   padding: 13px 0 15px;
-  margin-top: calc(69px + 50px);
   cursor: pointer;
   opacity: 1;
   transition: opacity .2s linear;
@@ -78,7 +89,7 @@
 }
 
 .authorization__btn-submit_type_login{
-  margin-top: 190px;
+  margin-top: 93px;
 }
 
 .authorization__login-in{
@@ -141,10 +152,6 @@
     min-width: 260px;
   }
 
-  .authorization__btn-submit{
-    margin-top: 206px;
-  }
-
   .authorization__btn-submit_type_login {
     margin-top: 279px;
   }
@@ -152,4 +159,9 @@
   .authorization__login-in{
     font-size: 12px;
   }
+
+  .authorization__submit-error{
+    margin-top: 180px;
+  }
+
 }

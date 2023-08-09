@@ -3,13 +3,16 @@
   position: relative;
 }
 
+.card__link{
+  text-decoration: none;
+}
+
 .card__image{
   height: 201px;
   width: 100%;
   object-fit: cover;
   object-position: 50% 50%;
   border-radius: 6px;
-  cursor: pointer;
 }
 
 .card__save-btn {
@@ -24,17 +27,23 @@
   width: 72px;
   height: 21px;
   visibility: hidden;
+  opacity: 0;
   transition: visibility .1s linear;
+  transition: opacity .3s ease-in-out;
+  cursor: pointer;
 }
+
 
 .card__container:hover .card__save-btn {
   visibility: visible;
+  opacity: 1;
 }
 
 .card__save-btn_type_remove{
   background-image: url('../../images/delete-icon.svg');
   width: 21px;
   height: 21px;
+  cursor: pointer;
 }
 
 .card__remove-save{
@@ -46,6 +55,7 @@
   border: none;
   width: 21px;
   height: 21px;
+  cursor: pointer;
 }
 
 
@@ -62,6 +72,7 @@
   margin: 0;
   font-size: 13px;
   font-weight: 500;
+  max-width: 250px
 }
 
 .card__duration{
@@ -91,6 +102,18 @@
 
   .card__duration{
     margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card__remove-save_type_mobile{
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .card__save-btn_type_mobile{
+    opacity: 1;
+    visibility: visible;
   }
 }
 

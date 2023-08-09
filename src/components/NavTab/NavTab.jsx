@@ -1,12 +1,12 @@
 import './NavTab.css'
 import { Link, useLocation } from 'react-router-dom';
 
-export default function NavTab() {
+export default function NavTab({loggedIn}) {
   const location = useLocation();
 
   return (
     <nav className="nav-menu">
-      {location.pathname === "/" ? (
+      {!loggedIn ? (
         <ul className="nav-menu__links">
           <li className="nav-menu__element">
             <Link to='/signup' className="nav-menu__link">
